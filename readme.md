@@ -35,6 +35,12 @@ create a new `tracks` app
 python manage.py startapp tracks
 ```
 
+define your model, then include your app in settings and make migrations
+
+```shell
+python manage.py makemigrations
+```
+
 ## MongoDB
 
 pull `mongo` image
@@ -46,7 +52,7 @@ docker pull mongo
 start mongo instance
 
 ```shell
-docker run -it -v mongodata:/data/db --name mongodb -d mongo
+docker run -it -v mongodata:/data/db -p 27017:27017 --name mongodb -d mongo
 ```
 
 double check, that it is running
