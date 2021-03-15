@@ -30,3 +30,9 @@ create a django project with
 ```shell
 django-admin startproject app .
 ```
+
+create a new `tracks` app
+
+```shell
+python manage.py startapp tracks
+```
