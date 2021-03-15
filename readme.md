@@ -28,5 +28,5 @@ poetry add graphene-django
 create a django project with 
 
 ```shell
-django-admin startproject tracks .
+django-admin startproject app .
 ```
