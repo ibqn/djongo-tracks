@@ -41,7 +41,7 @@ define your model, then include your app in settings and make migrations
 python manage.py makemigrations
 ```
 
-## MongoDB
+## Setup and manage MongoDB
 
 pull `mongo` image
 
@@ -85,4 +85,11 @@ stop or start container
 docker stop mongodb
 # or
 docker start mongodb
+```
+
+If you prefer some gui data visualization, than you can install MongoDB Compass
+
+```shell
+sudo dpkg -i ~/Downloads/mongodb-compass_1.26.0_amd64.deb
+
 ```
