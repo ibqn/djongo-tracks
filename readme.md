@@ -1,14 +1,17 @@
 ## Getting started
 
 create a virtual environment
+
 ```shell
 python3 -m venv './venv'
 ```
+
 activate it
 
 ```shell
 source venv/bin/activate.fish
 ```
+
 initialize a poetry project
 
 ```shell
@@ -47,7 +50,6 @@ spin up the server
 ```shell
 python manage.py runserver 0:4000
 ```
-
 
 ## Setup and manage MongoDB
 
@@ -102,7 +104,7 @@ sudo dpkg -i ~/Downloads/mongodb-compass_1.26.0_amd64.deb
 
 ```
 
-## Create new data
+## Create new data from shell
 
 open up django shell
 
