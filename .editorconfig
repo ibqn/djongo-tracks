@@ -14,9 +14,9 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = true
 
-# Python
-[*.py]
-indent_size = 4
+# Json
+[*.json]
+indent_size = 2
 
 # Makefiles
 [Makefile]

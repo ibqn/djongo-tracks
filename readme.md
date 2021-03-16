@@ -48,6 +48,25 @@ spin up the server
 python manage.py runserver 0:4000
 ```
 
+## Create new data
+
+open up django shell
+
+```shell
+python manage.py shell
+```
+
+create new data
+
+```python
+from tracks.models import Track
+track1 = Track(title='track1', description='track1 description', url='https://localhost.com/track1')
+track1.save()
+# or
+track2 = Track.objects.create(title='track2', description='track2 description', url='https://localhost.com/track2')
+
+```
+
 ## Setup and manage MongoDB
 
 pull `mongo` image
