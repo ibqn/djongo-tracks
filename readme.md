@@ -39,6 +39,13 @@ define your model, then include your app in settings and make migrations
 
 ```shell
 python manage.py makemigrations
+python manage.py migrate
+```
+
+spin up the server
+
+```shell
+python manage.py runserver 0:4000
 ```
 
 ## Setup and manage MongoDB
