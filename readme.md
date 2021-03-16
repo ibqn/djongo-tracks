@@ -130,3 +130,21 @@ export data from app's database
 ```shell
 python manage.py dumpdata --indent 2 tracks > tracks/fixtures/tracks.json
 ```
+
+## Load data from fixtures into database
+
+Load data based on matching fixture file name `tracks.json`
+
+```shell
+django-admin loaddata tracks
+```
+
+## Create super user from shell
+
+```python
+from django.contrib.auth.models import User
+user=User.objects.create_user('foo', password='bar')
+user.is_superuser=True
+user.is_staff=True
+user.save()
+```
