@@ -1,13 +1,14 @@
 [tool.poetry]
-authors = ["Your Name <you@example.com>"]
+authors = ["ibqn"]
 description = ""
 name = "djongo-tracks"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
 Django = "^3.1.7"
+django-graphql-jwt = {git = "git@github.com:ibqn/django-graphql-jwt.git"}
 djongo = {git = "git@github.com:nesdis/djongo.git"}
-graphene-django = "^2.15.0"
+graphene-django = {version = "^3.0.0b7", allow-prereleases = true}
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
