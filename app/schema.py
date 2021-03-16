@@ -4,10 +4,13 @@ from tracks.schema import (
     Mutation as TrackMutation,
 )
 
-from users.schema import Mutation as UserMutation
+from users.schema import (
+    Query as UserQuery,
+    Mutation as UserMutation,
+)
 
 
-class Query(TrackQuery, graphene.ObjectType):
+class Query(TrackQuery, UserQuery, graphene.ObjectType):
     pass
 
 

@@ -11,7 +11,14 @@ class UserType(DjangoObjectType):
     class Meta:
         model = get_user_model()
         # only_fields = ["id", "username", "password", "email"]
-        exclude = ["password"]
+        # exclude = ["password"]
+
+
+class Query(graphene.ObjectType):
+    user = graphene.Field(UserType, id=graphene.ID(required=True))
+
+    def resolve_user(self, info, id):
+        return get_user_model().objects.get(id=id)
 
 
 class CreateUser(graphene.Mutation):
@@ -28,8 +35,9 @@ class CreateUser(graphene.Mutation):
         User = get_user_model()
 
         try:
-            user = User(username=username, password=password, email=email)
-            user.save()
+            user = User.objects.create_user(
+                username=username, password=password, email=email
+            )
             ok = True
             message = "Success: User created"
         except Exception as e:
