@@ -15,3 +15,15 @@ class Track(models.Model):
         null=True,
         on_delete=models.CASCADE,
     )
+
+
+class Like(models.Model):
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+    )
+    track = models.ForeignKey(
+        Track,
+        related_name="likes",
+        on_delete=models.CASCADE,
+    )
