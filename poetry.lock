@@ -90,7 +90,7 @@ PyJWT = ">=1.5.0"
 type = "git"
 url = "git@github.com:ibqn/django-graphql-jwt.git"
 reference = "master"
-resolved_reference = "28e4f9749bac839d327914cfdda2ea3bb77bd775"
+resolved_reference = "dd92319071092bb517187904f3ac0610e8443edf"
 
 [[package]]
 name = "djongo"
