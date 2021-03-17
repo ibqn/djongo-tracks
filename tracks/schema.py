@@ -61,9 +61,14 @@ class UpdateTrack(graphene.Mutation):
         if track.posted_by != user:
             raise Exception("Not permitted to update this track")
 
-        track.title = title
-        track.description = description
-        track.url = url
+        if title is not None:
+            track.title = title
+
+        if description is not None:
+            track.description = description
+
+        if url is not None:
+            track.url = url
 
         track.save()
 
