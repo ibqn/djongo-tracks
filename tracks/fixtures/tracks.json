@@ -3,20 +3,22 @@
     "model": "tracks.track",
     "pk": 1,
     "fields": {
-      "title": "track1",
-      "description": "track1 description",
-      "url": "https://localhost.com/track1",
-      "created_at": "2021-03-16T07:10:12.120Z"
+      "title": "Track 1",
+      "description": "Track 1 description",
+      "url": "https://localhost/track1",
+      "created_at": "2021-03-16T07:10:12.120Z",
+      "posted_by": 1
     }
   },
   {
     "model": "tracks.track",
     "pk": 2,
     "fields": {
-      "title": "track2",
-      "description": "track2 description",
-      "url": "https://localhost.com/track2",
-      "created_at": "2021-03-16T07:13:58.764Z"
+      "title": "Track 2",
+      "description": "Track 2 description",
+      "url": "https://localhost/track2",
+      "created_at": "2021-03-16T07:13:58.764Z",
+      "posted_by": 1
     }
   }
 ]
