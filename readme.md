@@ -116,11 +116,10 @@ create new data
 
 ```python
 from tracks.models import Track
-track1 = Track(title='track1', description='track1 description', url='https://localhost.com/track1')
+track1 = Track(title='Track 1', description='Track 1 description', url='https://localhost/track1')
 track1.save()
 # or
-track2 = Track.objects.create(title='track2', description='track2 description', url='https://localhost.com/track2')
-
+track2 = Track.objects.create(title='Track 2', description='Track 2 description', url='https://localhost/track2')
 ```
 
 ## Dump data from database
@@ -136,7 +135,7 @@ python manage.py dumpdata --indent 2 tracks > tracks/fixtures/tracks.json
 Load data based on matching fixture file name `tracks.json`
 
 ```shell
-django-admin loaddata tracks
+python manage.py loaddata tracks
 ```
 
 ## Create super user from shell
