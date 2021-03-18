@@ -1,7 +1,11 @@
+from users.schema import UserType
 import graphene
 from graphene_django import DjangoObjectType
 
-from tracks.models import Track
+from tracks.models import (
+    Track,
+    Like,
+)
 
 
 class TrackType(DjangoObjectType):
@@ -9,11 +13,20 @@ class TrackType(DjangoObjectType):
         model = Track
 
 
+class LikeType(DjangoObjectType):
+    class Meta:
+        model = Like
+
+
 class Query(graphene.ObjectType):
     tracks = graphene.List(TrackType)
+    likes = graphene.List(LikeType)
 
     def resolve_tracks(self, info):
         return Track.objects.all()
+
+    def resolve_likes(self, info):
+        return Like.objects.all()
 
 
 class CreateTrack(graphene.Mutation):
@@ -95,6 +108,29 @@ class DeleteTrack(graphene.Mutation):
         track.delete()
 
         return DeleteTrack(track_id=track_id)
+
+
+class CreateLike(graphene.Mutation):
+    user = graphene.Field(UserType)
+    track = graphene.Field(TrackType)
+
+    class Arguments:
+        track_id = graphene.ID(required=True)
+
+    def mutate(self, info, track_id):
+        user = info.context.user
+
+        if not user.is_authenticated:
+            raise Exception("Not logged in")
+
+        track = Track.objects.get(id=track_id)
+
+        if track.posted_by != user:
+            raise Exception("Not permitted to delete this track")
+
+        Like.objects.create(user=user, track=track)
+
+        return CreateLike(user=user, track=track)
 
 
 class Mutation(graphene.ObjectType):
