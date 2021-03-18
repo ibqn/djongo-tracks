@@ -4,7 +4,6 @@ from graphql import GraphQLError
 import graphene
 from graphene.types.structures import NonNull
 from graphene_django import DjangoObjectType
-import graphene_django
 
 
 class UserType(DjangoObjectType):
@@ -27,6 +26,11 @@ class Query(graphene.ObjectType):
         return user
 
     def resolve_user(self, info, id):
+        user = info.context.user
+
+        if not user.is_authenticated:
+            raise GraphQLError("Not logged in")
+
         return get_user_model().objects.get(id=id)
 
 
