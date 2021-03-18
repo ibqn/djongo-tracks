@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-import sys
+from graphql import GraphQLError
 
 import graphene
 from graphene.types.structures import NonNull
@@ -22,7 +22,7 @@ class Query(graphene.ObjectType):
         user = info.context.user
 
         if not user.is_authenticated:
-            raise Exception("Not logged in")
+            raise GraphQLError("Not logged in")
 
         return user
 
@@ -32,8 +32,6 @@ class Query(graphene.ObjectType):
 
 class CreateUser(graphene.Mutation):
     user = graphene.Field(UserType)
-    ok = graphene.Boolean()
-    message = graphene.String()
 
     class Arguments:
         username = graphene.String(required=True)
@@ -43,18 +41,18 @@ class CreateUser(graphene.Mutation):
     def mutate(self, info, username, password, email):
         User = get_user_model()
 
-        try:
-            user = User.objects.create_user(
-                username=username, password=password, email=email
-            )
-            ok = True
-            message = "Success: User created"
-        except Exception as e:
-            user = None
-            ok = False
-            message = "Error: User is not created"
+        user = info.context.user
 
-        return CreateUser(user=user, ok=ok, message=message)
+        if not user.is_authenticated:
+            raise GraphQLError("Not logged in")
+
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+            email=email,
+        )
+
+        return CreateUser(user=user)
 
 
 class Mutation(graphene.ObjectType):

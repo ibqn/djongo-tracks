@@ -1,6 +1,7 @@
 from users.schema import UserType
 import graphene
 from graphene_django import DjangoObjectType
+from graphql import GraphQLError
 
 from tracks.models import (
     Track,
@@ -41,7 +42,7 @@ class CreateTrack(graphene.Mutation):
         user = info.context.user
 
         if not user.is_authenticated:
-            raise Exception("Not logged in")
+            raise GraphQLError("Not logged in")
 
         track = Track(
             title=title,
@@ -67,12 +68,12 @@ class UpdateTrack(graphene.Mutation):
         user = info.context.user
 
         if not user.is_authenticated:
-            raise Exception("Not logged in")
+            raise GraphQLError("Not logged in")
 
         track = Track.objects.get(id=track_id)
 
         if track.posted_by != user:
-            raise Exception("Not permitted to update this track")
+            raise GraphQLError("Not permitted to update this track")
 
         if title is not None:
             track.title = title
@@ -98,12 +99,12 @@ class DeleteTrack(graphene.Mutation):
         user = info.context.user
 
         if not user.is_authenticated:
-            raise Exception("Not logged in")
+            raise GraphQLError("Not logged in")
 
         track = Track.objects.get(id=track_id)
 
         if track.posted_by != user:
-            raise Exception("Not permitted to delete this track")
+            raise GraphQLError("Not permitted to delete this track")
 
         track.delete()
 
@@ -111,8 +112,9 @@ class DeleteTrack(graphene.Mutation):
 
 
 class CreateLike(graphene.Mutation):
-    user = graphene.Field(UserType)
-    track = graphene.Field(TrackType)
+    # user = graphene.Field(UserType)
+    # track = graphene.Field(TrackType)
+    like = graphene.Field(LikeType)
 
     class Arguments:
         track_id = graphene.ID(required=True)
@@ -121,16 +123,17 @@ class CreateLike(graphene.Mutation):
         user = info.context.user
 
         if not user.is_authenticated:
-            raise Exception("Not logged in")
+            raise GraphQLError("Not logged in")
 
         track = Track.objects.get(id=track_id)
 
         if track.posted_by != user:
-            raise Exception("Not permitted to delete this track")
+            raise GraphQLError("Not permitted to delete this track")
 
-        Like.objects.create(user=user, track=track)
+        like = Like.objects.create(user=user, track=track)
 
-        return CreateLike(user=user, track=track)
+        # return CreateLike(user=user, track=track)
+        return CreateLike(like=like)
 
 
 class Mutation(graphene.ObjectType):
