@@ -138,7 +138,7 @@ Load data based on matching fixture file name `tracks.json`
 python manage.py loaddata tracks
 ```
 
-## Create super user from shell
+## Create superuser from `django` shell
 
 ```python
 from django.contrib.auth.models import User
@@ -146,4 +146,10 @@ user=User.objects.create_user('foo', password='bar')
 user.is_superuser=True
 user.is_staff=True
 user.save()
+```
+
+## Create superuser
+
+```shell
+python manage.py createsuperuser
 ```
