@@ -151,3 +151,5 @@ class Mutation(graphene.ObjectType):
     create_track = CreateTrack.Field()
     update_track = UpdateTrack.Field()
     delete_track = DeleteTrack.Field()
+
+    create_like = CreateLike.Field()
