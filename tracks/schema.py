@@ -141,9 +141,6 @@ class CreateLike(graphene.Mutation):
 
         track = Track.objects.get(id=track_id)
 
-        if track.posted_by != user:
-            raise GraphQLError("Not permitted to delete this track")
-
         like = Like.objects.create(user=user, track=track)
 
         # return CreateLike(user=user, track=track)
