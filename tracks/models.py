@@ -16,6 +16,9 @@ class Track(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self) -> str:
+        return f"{self.title}"
+
 
 class Like(models.Model):
     user = models.ForeignKey(
@@ -27,3 +30,4 @@ class Like(models.Model):
         related_name="likes",
         on_delete=models.CASCADE,
     )
+    created_at = models.DateTimeField(auto_now_add=True)

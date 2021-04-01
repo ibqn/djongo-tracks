@@ -3,9 +3,9 @@
     "model": "tracks.track",
     "pk": 1,
     "fields": {
-      "title": "Track 1",
-      "description": "Track 1 description",
-      "url": "https://localhost/track1",
+      "title": "The Weeknd - Save Your Tears",
+      "description": "The Weeknd - Save Your Tears",
+      "url": "https://www.youtube.com/watch?v=XXYlFuWEuKI",
       "created_at": "2021-03-16T07:10:12.120Z",
       "posted_by": 1
     }
@@ -14,11 +14,91 @@
     "model": "tracks.track",
     "pk": 2,
     "fields": {
-      "title": "Track 2",
-      "description": "Track 2 description",
-      "url": "https://localhost/track2",
+      "title": "ATB - 9PM",
+      "description": "ATB - 9PM (Till I Come)",
+      "url": "https://www.youtube.com/watch?v=5A9OIIapSko",
       "created_at": "2021-03-16T07:13:58.764Z",
       "posted_by": 1
+    }
+  },
+  {
+    "model": "tracks.track",
+    "pk": 4,
+    "fields": {
+      "title": "Robin Schulz feat. KIDDO - All We Got",
+      "description": "Robin Schulz feat. KIDDO - All We Got",
+      "url": "https://www.youtube.com/watch?v=lznH7FZBBYs",
+      "created_at": "2021-03-21T13:51:12.295Z",
+      "posted_by": 1
+    }
+  },
+  {
+    "model": "tracks.track",
+    "pk": 5,
+    "fields": {
+      "title": "Robert Miles - Children",
+      "description": "Robert Miles - Children [Dream Version]",
+      "url": "https://www.youtube.com/watch?v=CC5ca6Hsb2Q",
+      "created_at": "2021-03-22T22:44:00.483Z",
+      "posted_by": 1
+    }
+  },
+  {
+    "model": "tracks.track",
+    "pk": 6,
+    "fields": {
+      "title": "Robert Miles - Fantasya",
+      "description": "(C) 1996 Deconstruction/BMG. Under exclusive licence from 'DBX Records' Italy.\r\nWritten, Arranged & Produced by Roberto Concina aka Robert Miles.",
+      "url": "https://www.youtube.com/watch?v=KYRR3eDColg",
+      "created_at": "2021-03-22T22:46:58.382Z",
+      "posted_by": 1
+    }
+  },
+  {
+    "model": "tracks.track",
+    "pk": 3,
+    "fields": {
+      "title": "Sting - Shape of My Heart",
+      "description": "Sting - Shape of My Heart (Official Music Video)",
+      "url": "https://www.youtube.com/watch?v=NlwIDxCjL-8",
+      "created_at": "2021-03-28T23:52:06.485Z",
+      "posted_by": 1
+    }
+  },
+  {
+    "model": "tracks.like",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "track": 1,
+      "created_at": null
+    }
+  },
+  {
+    "model": "tracks.like",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "track": 1,
+      "created_at": null
+    }
+  },
+  {
+    "model": "tracks.like",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "track": 2,
+      "created_at": null
+    }
+  },
+  {
+    "model": "tracks.like",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "track": 2,
+      "created_at": null
     }
   }
 ]
