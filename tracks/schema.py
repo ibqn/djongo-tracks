@@ -126,8 +126,6 @@ class DeleteTrack(graphene.Mutation):
 
 
 class CreateLike(graphene.Mutation):
-    # user = graphene.Field(UserType)
-    # track = graphene.Field(TrackType)
     like = graphene.Field(LikeType)
 
     class Arguments:
@@ -143,8 +141,29 @@ class CreateLike(graphene.Mutation):
 
         like = Like.objects.create(user=user, track=track)
 
-        # return CreateLike(user=user, track=track)
         return CreateLike(like=like)
+
+
+class DeleteLike(graphene.Mutation):
+    like_id = graphene.ID()
+
+    class Arguments:
+        like_id = graphene.ID(required=True)
+
+    def mutate(self, info, like_id):
+        user = info.context.user
+
+        if not user.is_authenticated:
+            raise GraphQLError("Not logged in")
+
+        like = Like.objects.get(id=like_id)
+
+        if like.user != user:
+            raise GraphQLError("Not permitted to delete this like")
+
+        like.delete()
+
+        return DeleteLike(like_id=like_id)
 
 
 class Mutation(graphene.ObjectType):
@@ -153,3 +172,4 @@ class Mutation(graphene.ObjectType):
     delete_track = DeleteTrack.Field()
 
     create_like = CreateLike.Field()
+    delete_like = DeleteLike.Field()
