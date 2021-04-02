@@ -148,20 +148,20 @@ class DeleteLike(graphene.Mutation):
     like_id = graphene.ID()
 
     class Arguments:
-        like_id = graphene.ID(required=True)
+        track_id = graphene.ID(required=True)
 
-    def mutate(self, info, like_id):
+    def mutate(self, info, track_id):
         user = info.context.user
 
         if not user.is_authenticated:
             raise GraphQLError("Not logged in")
 
-        like = Like.objects.get(id=like_id)
+        like = Like.objects.get(track__id=track_id, user=user)
 
         if like.user != user:
             raise GraphQLError("Not permitted to delete this like")
 
-        like.delete()
+        (like_id, _) = like.delete()
 
         return DeleteLike(like_id=like_id)
 
