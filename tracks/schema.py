@@ -137,9 +137,11 @@ class CreateLike(graphene.Mutation):
         if not user.is_authenticated:
             raise GraphQLError("Not logged in")
 
-        track = Track.objects.get(id=track_id)
+        # make sure that this track exists
+        Track.objects.get(id=track_id)
 
-        like = Like.objects.create(user=user, track=track)
+        # do not allow duplicate likes
+        like = Like.objects.get_or_create(track__id=track_id, user=user)
 
         return CreateLike(like=like)
 
