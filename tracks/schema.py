@@ -158,10 +158,12 @@ class DeleteLike(graphene.Mutation):
 
         like = Like.objects.get(track__id=track_id, user=user)
 
+        like_id = like.id
+
         if like.user != user:
             raise GraphQLError("Not permitted to delete this like")
 
-        (like_id, _) = like.delete()
+        like.delete()
 
         return DeleteLike(like_id=like_id)
 
