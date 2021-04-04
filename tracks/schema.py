@@ -138,10 +138,13 @@ class CreateLike(graphene.Mutation):
             raise GraphQLError("Not logged in")
 
         # make sure that this track exists
-        Track.objects.get(id=track_id)
+        track = Track.objects.get(id=track_id)
 
         # do not allow duplicate likes
-        like = Like.objects.get_or_create(track__id=track_id, user=user)
+        try:
+            like = Like.objects.get(track=track, user=user)
+        except Like.DoesNotExist:
+            like = Like.objects.create(track=track, user=user)
 
         return CreateLike(like=like)
 
