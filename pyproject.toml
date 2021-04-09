@@ -5,12 +5,11 @@ name = "djongo-tracks"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-Django = "^3.1.7"
-PyJWT = "1.7.1"
+Django = "^3.2"
+django-graphql-jwt = "^0.3.2"
 djongo = {git = "git@github.com:nesdis/djongo.git"}
+graphene-django = "^3.0.0b1"
 python = "^3.8"
-graphene-django = "^2.15.0"
-django-graphql-jwt = "^0.3.1"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^20.8b1", allow-prereleases = true}
